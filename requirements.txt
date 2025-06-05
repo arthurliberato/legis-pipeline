@@ -3,4 +3,4 @@ beautifulsoup4
 pdfplumber
 snowflake-connector-python
 dbt-snowflake
- 
+python-dotenv
