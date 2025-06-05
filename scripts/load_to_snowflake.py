@@ -5,7 +5,7 @@ import pandas as pd
 import snowflake.connector
 
 # Get credentials from GitHub Actions environment
-account = os.environ["QTDHLFW-OG50477"]
+account = os.environ["QTDHLFW-OG50477.snowflakecomputing.com"]
 user = os.environ["arthurliberato"]
 password = os.environ["@@Liberato081292"]
 database = os.environ["SNOWFLAKE_LEARN"]
