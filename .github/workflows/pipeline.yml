@@ -1,0 +1,44 @@
+name: ETL Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 2 * * *"  # every day at 2AM UTC
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    env:
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraping script
+        run: python scripts/scrape.py
+
+      - name: Validate data
+        run: python scripts/validate.py
+
+      - name: Load to Snowflake
+        run: python scripts/load_to_snowflake.py
+
+      - name: Run dbt models
+        run: |
+          cd dbt
+          dbt run --profiles-dir .
+ 
