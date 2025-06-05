@@ -1,0 +1,6 @@
+pandas
+beautifulsoup4
+pdfplumber
+snowflake-connector-python
+dbt-snowflake
+ 
