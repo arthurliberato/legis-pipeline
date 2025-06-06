@@ -5,12 +5,12 @@ import pandas as pd
 import snowflake.connector
 
 # Get credentials from GitHub Actions environment
-account = os.environ["QTDHLFW-OG50477.snowflakecomputing.com"]
-user = os.environ["arthurliberato"]
-password = os.environ["@@Liberato081292"]
-database = os.environ["SNOWFLAKE_LEARN"]
-schema = os.environ["PUBLIC"]
-warehouse = os.environ["COMPUTE_WH"]
+account = os.environ["SNOWFLAKE_ACCOUNT"]
+user = os.environ["SNOWFLAKE_USER"]
+password = os.environ["SNOWFLAKE_PASSWORD"]
+database = os.environ["SNOWFLAKE_DATABASE"]
+schema = os.environ["SNOWFLAKE_SCHEMA"]
+warehouse = os.environ["SNOWFLAKE_WAREHOUSE"]
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
