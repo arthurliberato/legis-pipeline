@@ -44,6 +44,7 @@ cursor.execute(f"""
 print("[TABLE] Ensured 'attendance' table exists")
 
 # Insert data
+df["session_date"] = pd.to_datetime(df["session_date"], dayfirst=True).dt.date
 for _, row in df.iterrows():
     cursor.execute(
         "INSERT INTO attendance (name, status, arrival_time, session_date, source_file) VALUES (%s, %s, %s, %s, %s)",
